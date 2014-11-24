@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.Core", "BridgeChat.Core\BridgeChat.Core.csproj", "{8ED3E91B-10B5-4D47-84DB-4D95888B6B61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.Protocol", "BridgeChat.Protocol\BridgeChat.Protocol.csproj", "{A348C780-C35E-49AC-A47F-016022BB2C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.PluginBase", "BridgeChat.PluginBase\BridgeChat.PluginBase.csproj", "{CF04032E-33AB-48ED-B158-7523581EF855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.ConsoleClient", "BridgeChat.ConsoleClient\BridgeChat.ConsoleClient.csproj", "{9CA34A26-87F0-4AFC-A2A1-BEAED94806B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.XMPP", "BridgeChat.XMPP\BridgeChat.XMPP.csproj", "{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ED3E91B-10B5-4D47-84DB-4D95888B6B61}.Debug|x86.ActiveCfg = Debug|x86
+		{8ED3E91B-10B5-4D47-84DB-4D95888B6B61}.Debug|x86.Build.0 = Debug|x86
+		{8ED3E91B-10B5-4D47-84DB-4D95888B6B61}.Release|x86.ActiveCfg = Release|x86
+		{8ED3E91B-10B5-4D47-84DB-4D95888B6B61}.Release|x86.Build.0 = Release|x86
+		{9CA34A26-87F0-4AFC-A2A1-BEAED94806B2}.Debug|x86.ActiveCfg = Debug|x86
+		{9CA34A26-87F0-4AFC-A2A1-BEAED94806B2}.Debug|x86.Build.0 = Debug|x86
+		{9CA34A26-87F0-4AFC-A2A1-BEAED94806B2}.Release|x86.ActiveCfg = Release|x86
+		{9CA34A26-87F0-4AFC-A2A1-BEAED94806B2}.Release|x86.Build.0 = Release|x86
+		{A348C780-C35E-49AC-A47F-016022BB2C6F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A348C780-C35E-49AC-A47F-016022BB2C6F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A348C780-C35E-49AC-A47F-016022BB2C6F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A348C780-C35E-49AC-A47F-016022BB2C6F}.Release|x86.Build.0 = Release|Any CPU
+		{CF04032E-33AB-48ED-B158-7523581EF855}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF04032E-33AB-48ED-B158-7523581EF855}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF04032E-33AB-48ED-B158-7523581EF855}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF04032E-33AB-48ED-B158-7523581EF855}.Release|x86.Build.0 = Release|Any CPU
+		{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}.Debug|x86.ActiveCfg = Debug|x86
+		{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}.Debug|x86.Build.0 = Debug|x86
+		{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}.Release|x86.ActiveCfg = Release|x86
+		{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BridgeChat.XMPP\BridgeChat.XMPP.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.BeforeMethodDeclarationParentheses = False
+		$3.BeforeMethodCallParentheses = False
+		$3.BeforeConstructorDeclarationParentheses = False
+		$3.BeforeIndexerDeclarationBracket = False
+		$3.BeforeDelegateDeclarationParentheses = False
+		$3.AfterDelegateDeclarationParameterComma = True
+		$3.NewParentheses = False
+		$3.SpacesBeforeBrackets = False
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 120
+		$4.NoTabsAfterNonTabs = True
+		$4.inheritsSet = VisualStudio
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
+	EndGlobalSection
+EndGlobal
