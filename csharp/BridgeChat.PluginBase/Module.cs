@@ -75,6 +75,9 @@ namespace BridgeChat.PluginBase
                             else throw;
                         }
 
+                        if (msg == null) // socket closed, shutting down
+                            break;
+
                         Group group;
                         if (msg.BindingRequest != null) {
                             var br = msg.BindingRequest;
