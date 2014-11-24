@@ -122,6 +122,10 @@ namespace BridgeChat.XMPP
                     if (target.Server == Domain) {
                         var roomname = target.User;
                         var theirnick = target.Resource;
+                        string password = null;
+                        var mucElement = pres.SelectSingleElement("x");
+                        if (mucElement != null)
+                            password = mucElement.GetTag("password");
                         Debug.WriteLine("'{0}' would like to join into '{1}' as '{2}'", pres.From, roomname, theirnick);
 
                         var reply = new Presence();
@@ -129,53 +133,58 @@ namespace BridgeChat.XMPP
                         reply.To = pres.From;
 
                         XMPPGroup group;
-                        var foundGroup = Groups.TryGetValue(roomname, out group);
-                        if (!foundGroup || !group.TryAddMember(theirnick, pres.From)) {
-                            if (!foundGroup) {
-                                // you can't create groups
-                                reply.From = new Jid(roomname, Domain, null);
-                                reply.Error = new Error(ErrorType.cancel, ErrorCondition.NotAllowed);
+                        if (Groups.TryGetValue(roomname, out group)) {
+                            reply.From = new Jid(roomname, Domain, theirnick);
+                            if (group.Password == password) {//((group.Password == null) || (pres.MucUser.HasTag("password") && (pres.MucUser.Password == group.Password))) {
+                                if (group.TryAddMember(theirnick, pres.From)) {
+                                    // success
+                                    // send presence of existing members
+                                    foreach (var name in group.AllMembers) {
+                                        var presence = new Presence();
+                                        presence.To = pres.From;
+                                        presence.From = new Jid(group.MUCName, Domain, name);
+                                        presence.GenerateId();
+                                        presence.MucUser = new User { Item = new Item(Affiliation.member, Role.participant) };
+                                        Connection.Send(presence);
+                                    }
+
+                                    var synthjid = new Jid(group.MUCName, Domain, theirnick);
+                                    // send presence to existing members
+                                    group.RelayNewUser(synthjid, theirnick);
+
+                                    reply.From = synthjid;
+                                    reply.MucUser = new User {
+                                        Status = new Status(110),
+                                        Item = new Item(Affiliation.member, Role.participant)
+                                    };
+                                    Connection.Send(reply);
+
+                                    // TODO: implement history
+
+                                    var seply = new Message(pres.From, new Jid(roomname, Domain, "BridgeChat"));
+                                    seply.GenerateId();
+                                    seply.Type = MessageType.groupchat;
+                                    seply.Subject = group.Topic;
+                                    Connection.Send(seply);
+                                    return;
+                                } else {
+                                    reply.Error = new Error(ErrorType.cancel, ErrorCondition.Conflict);
+                                    reply.Error.SetAttribute("by", new Jid(roomname, Domain, null));
+                                }
                             } else {
-                                reply.From = new Jid(roomname, Domain, theirnick);
-                                reply.Error = new Error(ErrorType.cancel, ErrorCondition.Conflict);
-                                reply.Error.SetAttribute("by", new Jid(roomname, Domain, null));
+                                reply.Error = new Error(ErrorType.auth, ErrorCondition.NotAuthorized);
                             }
-
-                            reply.Type = PresenceType.error;
-                            reply.MucUser = new User();
-                            reply.Id = pres.Id;
-
-                            Connection.Send(reply);
                         } else {
-                            // send presence of existing members
-                            foreach (var name in group.AllMembers) {
-                                var presence = new Presence();
-                                presence.To = pres.From;
-                                presence.From = new Jid(group.MUCName, Domain, name);
-                                presence.GenerateId();
-                                presence.MucUser = new User { Item = new Item(Affiliation.member, Role.participant) };
-                                Connection.Send(presence);
-                            }
-
-                            var synthjid = new Jid(group.MUCName, Domain, theirnick);
-                            // send presence to existing members
-                            group.RelayNewUser(synthjid, theirnick);
-
-                            reply.From = synthjid;
-                            reply.MucUser = new User {
-                                Status = new Status(110),
-                                Item = new Item(Affiliation.member, Role.participant)
-                            };
-                            Connection.Send(reply);
-
-                            // TODO: implement history
-
-                            var seply = new Message(pres.From, new Jid(roomname, Domain, "BridgeChat"));
-                            seply.GenerateId();
-                            seply.Type = MessageType.groupchat;
-                            seply.Subject = group.Topic;
-                            Connection.Send(seply);
+                            // you can't create groups
+                            reply.From = new Jid(roomname, Domain, null);
+                            reply.Error = new Error(ErrorType.cancel, ErrorCondition.NotAllowed);
                         }
+
+                        reply.Type = PresenceType.error;
+                        reply.MucUser = new User();
+                        reply.Id = pres.Id;
+
+                        Connection.Send(reply);
                     } else
                         Trace.WriteLine(target, "wtf what host is this");
                 } else {
@@ -267,11 +276,18 @@ namespace BridgeChat.XMPP
 
         public override bool TryBindGroup(uint groupid, string parameter, out Group result, out string diagnostics)
         {
-            // TODO: implement passwords (set them using special parameter syntax)
-            var group = new XMPPGroup(this, groupid, parameter);
+            var split = parameter.Split('#');
+            if (split.Length > 2) {
+                result = null;
+                diagnostics = "Illegal parameter format (should be 'room' or 'room#password')";
+                return false;
+            }
+
+            var name = split[0];
+            var group = new XMPPGroup(this, groupid, name, password: (split.Length == 2) ? split[1] : null);
             result = group;
             diagnostics = null;
-            return Groups.TryAdd(parameter, group);
+            return Groups.TryAdd(name, group);
         }
     }
 }

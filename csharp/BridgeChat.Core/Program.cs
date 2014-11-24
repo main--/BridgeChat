@@ -16,7 +16,7 @@ namespace BridgeChat.Core
         public DummyDatastore()
         {
             var grp = CreateGroup();
-            Bindings.Add(new Binding { GroupId = grp.Id, Module = "XMPP", BindParams = "asdf" });
+            Bindings.Add(new Binding { GroupId = grp.Id, Module = "XMPP", BindParams = "asdf#pwd" });
             Bindings.Add(new Binding { GroupId = grp.Id, Module = "CON", BindParams = "ignored" });
         }
 

@@ -15,15 +15,17 @@ namespace BridgeChat.XMPP
         private readonly XMPPModule Module;
         public ConcurrentDictionary<string, Jid> XMPPUsers { get; private set; }
         public string MUCName { get; private set; }
+        public string Password { get; private set; }
         public IEnumerable<string> AllMembers {
             get { return RemoteUsers.Select(tup => CoerceName(tup.Item1, tup.Item2)).Concat(MyUsers); }
         }
 
-        public XMPPGroup(XMPPModule mod, uint id, string name)
+        public XMPPGroup(XMPPModule mod, uint id, string name, string password)
             : base(mod, id)
         {
             Module = mod;
             MUCName = name;
+            Password = password;
             XMPPUsers = new ConcurrentDictionary<string, Jid>();
         }
 
