@@ -200,18 +200,6 @@ namespace BridgeChat.XMPP
 
                         group.RemoveXMPPMember(theirnick);
 
-                        // notify others
-                        var synthjid = new Jid(group.MUCName, Domain, theirnick);
-                        foreach (var pair in group.XMPPUsers) {
-                            var relay = new Presence();
-                            relay.From = synthjid;
-                            relay.To = pair.Value;
-                            relay.MucUser = new User {
-                                Item = new Item(Affiliation.member, Role.none)
-                            };
-                            Connection.Send(relay);
-                        }
-
                         var reply = new Presence();
                         reply.Type = PresenceType.unavailable;
                         reply.To = pres.From;

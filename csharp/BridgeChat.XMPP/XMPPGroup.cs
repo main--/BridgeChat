@@ -43,11 +43,32 @@ namespace BridgeChat.XMPP
             Jid jid;
             XMPPUsers.TryRemove(nick, out jid);
             MyUsers.Remove(nick);
+            RelayUserGone(nick);
+        }
+
+        private void RelayUserGone(string nick)
+        {
+            var synthjid = SynthesizeJid(nick);
+            foreach (var member in XMPPUsers.Values) {
+                var relay = new Presence();
+                relay.Type = agsXMPP.protocol.client.PresenceType.unavailable;
+                relay.From = synthjid;
+                relay.To = member;
+                relay.MucUser = new User {
+                    Item = new Item(Affiliation.member, Role.none)
+                };
+                Module.Connection.Send(relay);
+            }
+        }
+
+        private Jid SynthesizeJid(string nick)
+        {
+            return new Jid(MUCName, Module.Domain, nick);
         }
 
         private void RelayMessage(string nick, string message)
         {
-            var synthjid = new Jid(MUCName, Module.Domain, nick);
+            var synthjid = SynthesizeJid(nick);
             foreach (var pair in XMPPUsers) {
                 var msg = new Message(pair.Value, synthjid, message);
                 msg.GenerateId();
@@ -72,7 +93,7 @@ namespace BridgeChat.XMPP
 
         public void RelayNewTopic(string topic)
         {
-            var synthSetter = new Jid(MUCName, Module.Domain, "BridgeChat");
+            var synthSetter = SynthesizeJid("BridgeChat");
             foreach (var jid in XMPPUsers.Values) {
                 var msg = new Message(jid, synthSetter);
                 msg.Type = agsXMPP.protocol.client.MessageType.groupchat;
@@ -112,13 +133,13 @@ namespace BridgeChat.XMPP
         public override void AddUser(string module, string username)
         {
             base.AddUser(module, username);
-            RelayNewUser(new Jid(MUCName, Module.Domain, CoerceName(module, username)));
+            RelayNewUser(SynthesizeJid(CoerceName(module, username)));
         }
 
         public override void RemoveUser(string module, string username)
         {
             base.RemoveUser(module, username);
-            throw new NotImplementedException();
+            RelayUserGone(CoerceName(module, username));
         }
 
         public override void Unbind()
