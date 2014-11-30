@@ -10,7 +10,7 @@ namespace BridgeChat.Core
 {
     public class Module
     {
-        private static readonly Module ServerManagementModule = new Module("The BridgeChat server", "Server");
+        public static readonly Module ServerManagementModule = new Module("The BridgeChat server", "Server");
 
         public string LongName { get; private set; }
         public string ShortName { get; private set; }

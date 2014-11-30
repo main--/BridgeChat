@@ -22,6 +22,7 @@ namespace BridgeChat.Core
             Bind = bind;
             Unbind = unbind;
             Id = id;
+            Topic = String.Empty;
         }
 
         public void Destroy()

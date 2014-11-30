@@ -39,7 +39,7 @@ Global
 		{D547A8FF-1CF9-4022-95B6-1EAF2F89C839}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BridgeChat.XMPP\BridgeChat.XMPP.csproj
+		StartupItem = BridgeChat.Core\BridgeChat.Core.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

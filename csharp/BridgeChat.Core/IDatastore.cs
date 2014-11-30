@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BridgeChat.Core
 {
-    public interface IDatastore
+    public interface IDatastore : IDisposable
     {
         Action<Group> RemovalHandler { set; }
         IEnumerable<Group> SavedGroups { get; }
