@@ -4,8 +4,7 @@ message ModuleIntro {
 
   optional bool supports_plaintext = 100 [default=false];
   optional bool supports_html = 101 [default=false];
-  optional bool supports_png = 102 [default=false];
-  optional bool supports_jpeg = 103 [default=false];
+  optional bool supports_image_link = 102 [default=false];
 }
 
 message BindingRequest {
@@ -29,15 +28,14 @@ message UserEvent {
   optional string plugin_id = 2; // for foreign users
   //oneof {
   optional UserStatus user_status = 101;
-  optional string chat_message = 102;
+  optional ChatMessage chat_message = 102;
   //}
 }
 
 message ChatMessage {
   optional string plaintext = 1;
   optional string html = 2;
-  optional bytes png = 3;
-  optional bytes jpeg = 4;
+  optional string image_link = 3;
 }
 
 message GroupStatus {
