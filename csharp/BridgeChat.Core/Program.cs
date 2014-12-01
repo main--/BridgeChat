@@ -12,6 +12,11 @@ namespace BridgeChat.Core
     {
         public static void Main(string[] args)
         {
+            #if DEBUG
+            if (!Debugger.IsAttached)
+                Trace.Listeners.Add(new ConsoleTraceListener(true));
+            #endif
+
             using (var datastore = new SystemDatastore(new SqliteConnection("URI=file:core.sqlite").EnableForeignKeys())) {
                 //datastore.CreateSchema();
                 var server = new ChatServer(new IPEndPoint(IPAddress.Loopback, 31337), datastore);

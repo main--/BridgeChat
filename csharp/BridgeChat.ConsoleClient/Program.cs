@@ -2,6 +2,7 @@
 using BridgeChat.PluginBase;
 using System.Net;
 using System.Threading;
+using System.Diagnostics;
 
 namespace BridgeChat.ConsoleClient
 {
@@ -9,8 +10,12 @@ namespace BridgeChat.ConsoleClient
     {
         public static void Main(string[] args)
         {
+            #if DEBUG
+            if (!Debugger.IsAttached)
+                Trace.Listeners.Add(new ConsoleTraceListener(true));
+            #endif
+
             var mod = new ConsoleModule("localhost", 31337);
-            Thread.Sleep(1000);
             Console.CancelKeyPress += (sender, e) => { mod.Shutdown(); e.Cancel = true; };
             mod.Run().Wait();
             Environment.Exit(0);

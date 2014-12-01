@@ -36,7 +36,7 @@ namespace BridgeChat.Core
 
         public void SetTopic(string topic, Module sender)
         {
-            lock (Topic) {
+            lock (this) {
                 foreach (var module in BoundModules)
                     if (module != sender)
                         module.SetTopic(Id, topic);
