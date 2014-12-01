@@ -62,6 +62,46 @@ public final class BridgeChat {
      */
     com.google.protobuf.ByteString
         getShortNameBytes();
+
+    // optional bool supports_plaintext = 100 [default = false];
+    /**
+     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     */
+    boolean hasSupportsPlaintext();
+    /**
+     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     */
+    boolean getSupportsPlaintext();
+
+    // optional bool supports_html = 101 [default = false];
+    /**
+     * <code>optional bool supports_html = 101 [default = false];</code>
+     */
+    boolean hasSupportsHtml();
+    /**
+     * <code>optional bool supports_html = 101 [default = false];</code>
+     */
+    boolean getSupportsHtml();
+
+    // optional bool supports_png = 102 [default = false];
+    /**
+     * <code>optional bool supports_png = 102 [default = false];</code>
+     */
+    boolean hasSupportsPng();
+    /**
+     * <code>optional bool supports_png = 102 [default = false];</code>
+     */
+    boolean getSupportsPng();
+
+    // optional bool supports_jpeg = 103 [default = false];
+    /**
+     * <code>optional bool supports_jpeg = 103 [default = false];</code>
+     */
+    boolean hasSupportsJpeg();
+    /**
+     * <code>optional bool supports_jpeg = 103 [default = false];</code>
+     */
+    boolean getSupportsJpeg();
   }
   /**
    * Protobuf type {@code ModuleIntro}
@@ -122,6 +162,26 @@ public final class BridgeChat {
             case 18: {
               bitField0_ |= 0x00000002;
               shortName_ = input.readBytes();
+              break;
+            }
+            case 800: {
+              bitField0_ |= 0x00000004;
+              supportsPlaintext_ = input.readBool();
+              break;
+            }
+            case 808: {
+              bitField0_ |= 0x00000008;
+              supportsHtml_ = input.readBool();
+              break;
+            }
+            case 816: {
+              bitField0_ |= 0x00000010;
+              supportsPng_ = input.readBool();
+              break;
+            }
+            case 824: {
+              bitField0_ |= 0x00000020;
+              supportsJpeg_ = input.readBool();
               break;
             }
           }
@@ -274,9 +334,77 @@ public final class BridgeChat {
       }
     }
 
+    // optional bool supports_plaintext = 100 [default = false];
+    public static final int SUPPORTS_PLAINTEXT_FIELD_NUMBER = 100;
+    private boolean supportsPlaintext_;
+    /**
+     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     */
+    public boolean hasSupportsPlaintext() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     */
+    public boolean getSupportsPlaintext() {
+      return supportsPlaintext_;
+    }
+
+    // optional bool supports_html = 101 [default = false];
+    public static final int SUPPORTS_HTML_FIELD_NUMBER = 101;
+    private boolean supportsHtml_;
+    /**
+     * <code>optional bool supports_html = 101 [default = false];</code>
+     */
+    public boolean hasSupportsHtml() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool supports_html = 101 [default = false];</code>
+     */
+    public boolean getSupportsHtml() {
+      return supportsHtml_;
+    }
+
+    // optional bool supports_png = 102 [default = false];
+    public static final int SUPPORTS_PNG_FIELD_NUMBER = 102;
+    private boolean supportsPng_;
+    /**
+     * <code>optional bool supports_png = 102 [default = false];</code>
+     */
+    public boolean hasSupportsPng() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional bool supports_png = 102 [default = false];</code>
+     */
+    public boolean getSupportsPng() {
+      return supportsPng_;
+    }
+
+    // optional bool supports_jpeg = 103 [default = false];
+    public static final int SUPPORTS_JPEG_FIELD_NUMBER = 103;
+    private boolean supportsJpeg_;
+    /**
+     * <code>optional bool supports_jpeg = 103 [default = false];</code>
+     */
+    public boolean hasSupportsJpeg() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional bool supports_jpeg = 103 [default = false];</code>
+     */
+    public boolean getSupportsJpeg() {
+      return supportsJpeg_;
+    }
+
     private void initFields() {
       longName_ = "";
       shortName_ = "";
+      supportsPlaintext_ = false;
+      supportsHtml_ = false;
+      supportsPng_ = false;
+      supportsJpeg_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -304,6 +432,18 @@ public final class BridgeChat {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getShortNameBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(100, supportsPlaintext_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(101, supportsHtml_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeBool(102, supportsPng_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeBool(103, supportsJpeg_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -320,6 +460,22 @@ public final class BridgeChat {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getShortNameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(100, supportsPlaintext_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(101, supportsHtml_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(102, supportsPng_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(103, supportsJpeg_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -441,6 +597,14 @@ public final class BridgeChat {
         bitField0_ = (bitField0_ & ~0x00000001);
         shortName_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        supportsPlaintext_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        supportsHtml_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        supportsPng_ = false;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        supportsJpeg_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -477,6 +641,22 @@ public final class BridgeChat {
           to_bitField0_ |= 0x00000002;
         }
         result.shortName_ = shortName_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.supportsPlaintext_ = supportsPlaintext_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.supportsHtml_ = supportsHtml_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.supportsPng_ = supportsPng_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.supportsJpeg_ = supportsJpeg_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -502,6 +682,18 @@ public final class BridgeChat {
           bitField0_ |= 0x00000002;
           shortName_ = other.shortName_;
           onChanged();
+        }
+        if (other.hasSupportsPlaintext()) {
+          setSupportsPlaintext(other.getSupportsPlaintext());
+        }
+        if (other.hasSupportsHtml()) {
+          setSupportsHtml(other.getSupportsHtml());
+        }
+        if (other.hasSupportsPng()) {
+          setSupportsPng(other.getSupportsPng());
+        }
+        if (other.hasSupportsJpeg()) {
+          setSupportsJpeg(other.getSupportsJpeg());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -730,6 +922,138 @@ public final class BridgeChat {
   }
   bitField0_ |= 0x00000002;
         shortName_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bool supports_plaintext = 100 [default = false];
+      private boolean supportsPlaintext_ ;
+      /**
+       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       */
+      public boolean hasSupportsPlaintext() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       */
+      public boolean getSupportsPlaintext() {
+        return supportsPlaintext_;
+      }
+      /**
+       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       */
+      public Builder setSupportsPlaintext(boolean value) {
+        bitField0_ |= 0x00000004;
+        supportsPlaintext_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       */
+      public Builder clearSupportsPlaintext() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        supportsPlaintext_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional bool supports_html = 101 [default = false];
+      private boolean supportsHtml_ ;
+      /**
+       * <code>optional bool supports_html = 101 [default = false];</code>
+       */
+      public boolean hasSupportsHtml() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bool supports_html = 101 [default = false];</code>
+       */
+      public boolean getSupportsHtml() {
+        return supportsHtml_;
+      }
+      /**
+       * <code>optional bool supports_html = 101 [default = false];</code>
+       */
+      public Builder setSupportsHtml(boolean value) {
+        bitField0_ |= 0x00000008;
+        supportsHtml_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool supports_html = 101 [default = false];</code>
+       */
+      public Builder clearSupportsHtml() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        supportsHtml_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional bool supports_png = 102 [default = false];
+      private boolean supportsPng_ ;
+      /**
+       * <code>optional bool supports_png = 102 [default = false];</code>
+       */
+      public boolean hasSupportsPng() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bool supports_png = 102 [default = false];</code>
+       */
+      public boolean getSupportsPng() {
+        return supportsPng_;
+      }
+      /**
+       * <code>optional bool supports_png = 102 [default = false];</code>
+       */
+      public Builder setSupportsPng(boolean value) {
+        bitField0_ |= 0x00000010;
+        supportsPng_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool supports_png = 102 [default = false];</code>
+       */
+      public Builder clearSupportsPng() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        supportsPng_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional bool supports_jpeg = 103 [default = false];
+      private boolean supportsJpeg_ ;
+      /**
+       * <code>optional bool supports_jpeg = 103 [default = false];</code>
+       */
+      public boolean hasSupportsJpeg() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional bool supports_jpeg = 103 [default = false];</code>
+       */
+      public boolean getSupportsJpeg() {
+        return supportsJpeg_;
+      }
+      /**
+       * <code>optional bool supports_jpeg = 103 [default = false];</code>
+       */
+      public Builder setSupportsJpeg(boolean value) {
+        bitField0_ |= 0x00000020;
+        supportsJpeg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool supports_jpeg = 103 [default = false];</code>
+       */
+      public Builder clearSupportsJpeg() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        supportsJpeg_ = false;
         onChanged();
         return this;
       }
@@ -3628,6 +3952,801 @@ public final class BridgeChat {
     // @@protoc_insertion_point(class_scope:UserEvent)
   }
 
+  public interface ChatMessageOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string plaintext = 1;
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    boolean hasPlaintext();
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    java.lang.String getPlaintext();
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getPlaintextBytes();
+
+    // optional string html = 2;
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    boolean hasHtml();
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    java.lang.String getHtml();
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getHtmlBytes();
+
+    // optional bytes png = 3;
+    /**
+     * <code>optional bytes png = 3;</code>
+     */
+    boolean hasPng();
+    /**
+     * <code>optional bytes png = 3;</code>
+     */
+    com.google.protobuf.ByteString getPng();
+
+    // optional bytes jpeg = 4;
+    /**
+     * <code>optional bytes jpeg = 4;</code>
+     */
+    boolean hasJpeg();
+    /**
+     * <code>optional bytes jpeg = 4;</code>
+     */
+    com.google.protobuf.ByteString getJpeg();
+  }
+  /**
+   * Protobuf type {@code ChatMessage}
+   */
+  public static final class ChatMessage extends
+      com.google.protobuf.GeneratedMessage
+      implements ChatMessageOrBuilder {
+    // Use ChatMessage.newBuilder() to construct.
+    private ChatMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ChatMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ChatMessage defaultInstance;
+    public static ChatMessage getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ChatMessage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChatMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              plaintext_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              html_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              png_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              jpeg_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return BridgeChat.internal_static_ChatMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return BridgeChat.internal_static_ChatMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              BridgeChat.ChatMessage.class, BridgeChat.ChatMessage.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ChatMessage> PARSER =
+        new com.google.protobuf.AbstractParser<ChatMessage>() {
+      public ChatMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChatMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChatMessage> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string plaintext = 1;
+    public static final int PLAINTEXT_FIELD_NUMBER = 1;
+    private java.lang.Object plaintext_;
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    public boolean hasPlaintext() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    public java.lang.String getPlaintext() {
+      java.lang.Object ref = plaintext_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          plaintext_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string plaintext = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPlaintextBytes() {
+      java.lang.Object ref = plaintext_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        plaintext_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string html = 2;
+    public static final int HTML_FIELD_NUMBER = 2;
+    private java.lang.Object html_;
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    public boolean hasHtml() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    public java.lang.String getHtml() {
+      java.lang.Object ref = html_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          html_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string html = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHtmlBytes() {
+      java.lang.Object ref = html_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        html_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional bytes png = 3;
+    public static final int PNG_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString png_;
+    /**
+     * <code>optional bytes png = 3;</code>
+     */
+    public boolean hasPng() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bytes png = 3;</code>
+     */
+    public com.google.protobuf.ByteString getPng() {
+      return png_;
+    }
+
+    // optional bytes jpeg = 4;
+    public static final int JPEG_FIELD_NUMBER = 4;
+    private com.google.protobuf.ByteString jpeg_;
+    /**
+     * <code>optional bytes jpeg = 4;</code>
+     */
+    public boolean hasJpeg() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bytes jpeg = 4;</code>
+     */
+    public com.google.protobuf.ByteString getJpeg() {
+      return jpeg_;
+    }
+
+    private void initFields() {
+      plaintext_ = "";
+      html_ = "";
+      png_ = com.google.protobuf.ByteString.EMPTY;
+      jpeg_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getPlaintextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getHtmlBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, png_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, jpeg_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getPlaintextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getHtmlBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, png_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, jpeg_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static BridgeChat.ChatMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static BridgeChat.ChatMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static BridgeChat.ChatMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static BridgeChat.ChatMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static BridgeChat.ChatMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static BridgeChat.ChatMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static BridgeChat.ChatMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static BridgeChat.ChatMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static BridgeChat.ChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static BridgeChat.ChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(BridgeChat.ChatMessage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ChatMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements BridgeChat.ChatMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return BridgeChat.internal_static_ChatMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return BridgeChat.internal_static_ChatMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                BridgeChat.ChatMessage.class, BridgeChat.ChatMessage.Builder.class);
+      }
+
+      // Construct using BridgeChat.ChatMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        plaintext_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        html_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        png_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        jpeg_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return BridgeChat.internal_static_ChatMessage_descriptor;
+      }
+
+      public BridgeChat.ChatMessage getDefaultInstanceForType() {
+        return BridgeChat.ChatMessage.getDefaultInstance();
+      }
+
+      public BridgeChat.ChatMessage build() {
+        BridgeChat.ChatMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public BridgeChat.ChatMessage buildPartial() {
+        BridgeChat.ChatMessage result = new BridgeChat.ChatMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.plaintext_ = plaintext_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.html_ = html_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.png_ = png_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.jpeg_ = jpeg_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof BridgeChat.ChatMessage) {
+          return mergeFrom((BridgeChat.ChatMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(BridgeChat.ChatMessage other) {
+        if (other == BridgeChat.ChatMessage.getDefaultInstance()) return this;
+        if (other.hasPlaintext()) {
+          bitField0_ |= 0x00000001;
+          plaintext_ = other.plaintext_;
+          onChanged();
+        }
+        if (other.hasHtml()) {
+          bitField0_ |= 0x00000002;
+          html_ = other.html_;
+          onChanged();
+        }
+        if (other.hasPng()) {
+          setPng(other.getPng());
+        }
+        if (other.hasJpeg()) {
+          setJpeg(other.getJpeg());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        BridgeChat.ChatMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (BridgeChat.ChatMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string plaintext = 1;
+      private java.lang.Object plaintext_ = "";
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public boolean hasPlaintext() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public java.lang.String getPlaintext() {
+        java.lang.Object ref = plaintext_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          plaintext_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPlaintextBytes() {
+        java.lang.Object ref = plaintext_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          plaintext_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public Builder setPlaintext(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        plaintext_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public Builder clearPlaintext() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        plaintext_ = getDefaultInstance().getPlaintext();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string plaintext = 1;</code>
+       */
+      public Builder setPlaintextBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        plaintext_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string html = 2;
+      private java.lang.Object html_ = "";
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public boolean hasHtml() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public java.lang.String getHtml() {
+        java.lang.Object ref = html_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          html_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHtmlBytes() {
+        java.lang.Object ref = html_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          html_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public Builder setHtml(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        html_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public Builder clearHtml() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        html_ = getDefaultInstance().getHtml();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string html = 2;</code>
+       */
+      public Builder setHtmlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        html_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes png = 3;
+      private com.google.protobuf.ByteString png_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes png = 3;</code>
+       */
+      public boolean hasPng() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional bytes png = 3;</code>
+       */
+      public com.google.protobuf.ByteString getPng() {
+        return png_;
+      }
+      /**
+       * <code>optional bytes png = 3;</code>
+       */
+      public Builder setPng(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        png_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes png = 3;</code>
+       */
+      public Builder clearPng() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        png_ = getDefaultInstance().getPng();
+        onChanged();
+        return this;
+      }
+
+      // optional bytes jpeg = 4;
+      private com.google.protobuf.ByteString jpeg_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes jpeg = 4;</code>
+       */
+      public boolean hasJpeg() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bytes jpeg = 4;</code>
+       */
+      public com.google.protobuf.ByteString getJpeg() {
+        return jpeg_;
+      }
+      /**
+       * <code>optional bytes jpeg = 4;</code>
+       */
+      public Builder setJpeg(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        jpeg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes jpeg = 4;</code>
+       */
+      public Builder clearJpeg() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        jpeg_ = getDefaultInstance().getJpeg();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ChatMessage)
+    }
+
+    static {
+      defaultInstance = new ChatMessage(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ChatMessage)
+  }
+
   public interface GroupStatusOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -5650,6 +6769,11 @@ public final class BridgeChat {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_UserEvent_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ChatMessage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ChatMessage_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_GroupStatus_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -5668,16 +6792,21 @@ public final class BridgeChat {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020BridgeChat.proto\"4\n\013ModuleIntro\022\021\n\tlon" +
-      "g_name\030\001 \002(\t\022\022\n\nshort_name\030\002 \002(\t\"#\n\016Bind" +
-      "ingRequest\022\021\n\tbind_info\030\001 \002(\t\"6\n\017Binding" +
-      "Response\022\017\n\007success\030\001 \002(\010\022\022\n\ndiagnostic\030" +
-      "\002 \001(\t\"\017\n\rUnbindRequest\"#\n\nUserStatus\022\025\n\r" +
-      "online_status\030\002 \001(\010\"h\n\tUserEvent\022\020\n\010user" +
-      "name\030\001 \002(\t\022\021\n\tplugin_id\030\002 \001(\t\022 \n\013user_st" +
-      "atus\030e \001(\0132\013.UserStatus\022\024\n\014chat_message\030" +
-      "f \001(\t\"\034\n\013GroupStatus\022\r\n\005topic\030\001 \001(\t\"\351\001\n\014" +
-      "GroupMessage\022\020\n\010group_id\030\001 \002(\r\022(\n\017bindin",
+      "\n\020BridgeChat.proto\"\260\001\n\013ModuleIntro\022\021\n\tlo" +
+      "ng_name\030\001 \002(\t\022\022\n\nshort_name\030\002 \002(\t\022!\n\022sup" +
+      "ports_plaintext\030d \001(\010:\005false\022\034\n\rsupports" +
+      "_html\030e \001(\010:\005false\022\033\n\014supports_png\030f \001(\010" +
+      ":\005false\022\034\n\rsupports_jpeg\030g \001(\010:\005false\"#\n" +
+      "\016BindingRequest\022\021\n\tbind_info\030\001 \002(\t\"6\n\017Bi" +
+      "ndingResponse\022\017\n\007success\030\001 \002(\010\022\022\n\ndiagno" +
+      "stic\030\002 \001(\t\"\017\n\rUnbindRequest\"#\n\nUserStatu" +
+      "s\022\025\n\ronline_status\030\002 \001(\010\"h\n\tUserEvent\022\020\n" +
+      "\010username\030\001 \002(\t\022\021\n\tplugin_id\030\002 \001(\t\022 \n\013us",
+      "er_status\030e \001(\0132\013.UserStatus\022\024\n\014chat_mes" +
+      "sage\030f \001(\t\"I\n\013ChatMessage\022\021\n\tplaintext\030\001" +
+      " \001(\t\022\014\n\004html\030\002 \001(\t\022\013\n\003png\030\003 \001(\014\022\014\n\004jpeg\030" +
+      "\004 \001(\014\"\034\n\013GroupStatus\022\r\n\005topic\030\001 \001(\t\"\351\001\n\014" +
+      "GroupMessage\022\020\n\010group_id\030\001 \002(\r\022(\n\017bindin" +
       "g_request\030e \001(\0132\017.BindingRequest\022*\n\020bind" +
       "ing_response\030f \001(\0132\020.BindingResponse\022&\n\016" +
       "unbind_request\030g \001(\0132\016.UnbindRequest\022)\n\023" +
@@ -5694,7 +6823,7 @@ public final class BridgeChat {
           internal_static_ModuleIntro_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ModuleIntro_descriptor,
-              new java.lang.String[] { "LongName", "ShortName", });
+              new java.lang.String[] { "LongName", "ShortName", "SupportsPlaintext", "SupportsHtml", "SupportsPng", "SupportsJpeg", });
           internal_static_BindingRequest_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_BindingRequest_fieldAccessorTable = new
@@ -5725,14 +6854,20 @@ public final class BridgeChat {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_UserEvent_descriptor,
               new java.lang.String[] { "Username", "PluginId", "UserStatus", "ChatMessage", });
-          internal_static_GroupStatus_descriptor =
+          internal_static_ChatMessage_descriptor =
             getDescriptor().getMessageTypes().get(6);
+          internal_static_ChatMessage_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ChatMessage_descriptor,
+              new java.lang.String[] { "Plaintext", "Html", "Png", "Jpeg", });
+          internal_static_GroupStatus_descriptor =
+            getDescriptor().getMessageTypes().get(7);
           internal_static_GroupStatus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_GroupStatus_descriptor,
               new java.lang.String[] { "Topic", });
           internal_static_GroupMessage_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_GroupMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_GroupMessage_descriptor,

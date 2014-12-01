@@ -13,7 +13,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='BridgeChat.proto',
   package='',
-  serialized_pb='\n\x10\x42ridgeChat.proto\"4\n\x0bModuleIntro\x12\x11\n\tlong_name\x18\x01 \x02(\t\x12\x12\n\nshort_name\x18\x02 \x02(\t\"#\n\x0e\x42indingRequest\x12\x11\n\tbind_info\x18\x01 \x02(\t\"6\n\x0f\x42indingResponse\x12\x0f\n\x07success\x18\x01 \x02(\x08\x12\x12\n\ndiagnostic\x18\x02 \x01(\t\"\x0f\n\rUnbindRequest\"#\n\nUserStatus\x12\x15\n\ronline_status\x18\x02 \x01(\x08\"h\n\tUserEvent\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x11\n\tplugin_id\x18\x02 \x01(\t\x12 \n\x0buser_status\x18\x65 \x01(\x0b\x32\x0b.UserStatus\x12\x14\n\x0c\x63hat_message\x18\x66 \x01(\t\"\x1c\n\x0bGroupStatus\x12\r\n\x05topic\x18\x01 \x01(\t\"\xe9\x01\n\x0cGroupMessage\x12\x10\n\x08group_id\x18\x01 \x02(\r\x12(\n\x0f\x62inding_request\x18\x65 \x01(\x0b\x32\x0f.BindingRequest\x12*\n\x10\x62inding_response\x18\x66 \x01(\x0b\x32\x10.BindingResponse\x12&\n\x0eunbind_request\x18g \x01(\x0b\x32\x0e.UnbindRequest\x12)\n\x13group_status_change\x18h \x01(\x0b\x32\x0c.GroupStatus\x12\x1e\n\nuser_event\x18i \x01(\x0b\x32\n.UserEvent')
+  serialized_pb='\n\x10\x42ridgeChat.proto\"\xb0\x01\n\x0bModuleIntro\x12\x11\n\tlong_name\x18\x01 \x02(\t\x12\x12\n\nshort_name\x18\x02 \x02(\t\x12!\n\x12supports_plaintext\x18\x64 \x01(\x08:\x05\x66\x61lse\x12\x1c\n\rsupports_html\x18\x65 \x01(\x08:\x05\x66\x61lse\x12\x1b\n\x0csupports_png\x18\x66 \x01(\x08:\x05\x66\x61lse\x12\x1c\n\rsupports_jpeg\x18g \x01(\x08:\x05\x66\x61lse\"#\n\x0e\x42indingRequest\x12\x11\n\tbind_info\x18\x01 \x02(\t\"6\n\x0f\x42indingResponse\x12\x0f\n\x07success\x18\x01 \x02(\x08\x12\x12\n\ndiagnostic\x18\x02 \x01(\t\"\x0f\n\rUnbindRequest\"#\n\nUserStatus\x12\x15\n\ronline_status\x18\x02 \x01(\x08\"h\n\tUserEvent\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x11\n\tplugin_id\x18\x02 \x01(\t\x12 \n\x0buser_status\x18\x65 \x01(\x0b\x32\x0b.UserStatus\x12\x14\n\x0c\x63hat_message\x18\x66 \x01(\t\"I\n\x0b\x43hatMessage\x12\x11\n\tplaintext\x18\x01 \x01(\t\x12\x0c\n\x04html\x18\x02 \x01(\t\x12\x0b\n\x03png\x18\x03 \x01(\x0c\x12\x0c\n\x04jpeg\x18\x04 \x01(\x0c\"\x1c\n\x0bGroupStatus\x12\r\n\x05topic\x18\x01 \x01(\t\"\xe9\x01\n\x0cGroupMessage\x12\x10\n\x08group_id\x18\x01 \x02(\r\x12(\n\x0f\x62inding_request\x18\x65 \x01(\x0b\x32\x0f.BindingRequest\x12*\n\x10\x62inding_response\x18\x66 \x01(\x0b\x32\x10.BindingResponse\x12&\n\x0eunbind_request\x18g \x01(\x0b\x32\x0e.UnbindRequest\x12)\n\x13group_status_change\x18h \x01(\x0b\x32\x0c.GroupStatus\x12\x1e\n\nuser_event\x18i \x01(\x0b\x32\n.UserEvent')
 
 
 
@@ -39,6 +39,34 @@ _MODULEINTRO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='supports_plaintext', full_name='ModuleIntro.supports_plaintext', index=2,
+      number=100, type=8, cpp_type=7, label=1,
+      has_default_value=True, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='supports_html', full_name='ModuleIntro.supports_html', index=3,
+      number=101, type=8, cpp_type=7, label=1,
+      has_default_value=True, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='supports_png', full_name='ModuleIntro.supports_png', index=4,
+      number=102, type=8, cpp_type=7, label=1,
+      has_default_value=True, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='supports_jpeg', full_name='ModuleIntro.supports_jpeg', index=5,
+      number=103, type=8, cpp_type=7, label=1,
+      has_default_value=True, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -48,8 +76,8 @@ _MODULEINTRO = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=20,
-  serialized_end=72,
+  serialized_start=21,
+  serialized_end=197,
 )
 
 
@@ -76,8 +104,8 @@ _BINDINGREQUEST = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=74,
-  serialized_end=109,
+  serialized_start=199,
+  serialized_end=234,
 )
 
 
@@ -111,8 +139,8 @@ _BINDINGRESPONSE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=111,
-  serialized_end=165,
+  serialized_start=236,
+  serialized_end=290,
 )
 
 
@@ -132,8 +160,8 @@ _UNBINDREQUEST = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=167,
-  serialized_end=182,
+  serialized_start=292,
+  serialized_end=307,
 )
 
 
@@ -160,8 +188,8 @@ _USERSTATUS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=184,
-  serialized_end=219,
+  serialized_start=309,
+  serialized_end=344,
 )
 
 
@@ -209,8 +237,57 @@ _USEREVENT = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=221,
-  serialized_end=325,
+  serialized_start=346,
+  serialized_end=450,
+)
+
+
+_CHATMESSAGE = _descriptor.Descriptor(
+  name='ChatMessage',
+  full_name='ChatMessage',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='plaintext', full_name='ChatMessage.plaintext', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='html', full_name='ChatMessage.html', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='png', full_name='ChatMessage.png', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value="",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='jpeg', full_name='ChatMessage.jpeg', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value="",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=452,
+  serialized_end=525,
 )
 
 
@@ -237,8 +314,8 @@ _GROUPSTATUS = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=327,
-  serialized_end=355,
+  serialized_start=527,
+  serialized_end=555,
 )
 
 
@@ -300,8 +377,8 @@ _GROUPMESSAGE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=358,
-  serialized_end=591,
+  serialized_start=558,
+  serialized_end=791,
 )
 
 _USEREVENT.fields_by_name['user_status'].message_type = _USERSTATUS
@@ -316,6 +393,7 @@ DESCRIPTOR.message_types_by_name['BindingResponse'] = _BINDINGRESPONSE
 DESCRIPTOR.message_types_by_name['UnbindRequest'] = _UNBINDREQUEST
 DESCRIPTOR.message_types_by_name['UserStatus'] = _USERSTATUS
 DESCRIPTOR.message_types_by_name['UserEvent'] = _USEREVENT
+DESCRIPTOR.message_types_by_name['ChatMessage'] = _CHATMESSAGE
 DESCRIPTOR.message_types_by_name['GroupStatus'] = _GROUPSTATUS
 DESCRIPTOR.message_types_by_name['GroupMessage'] = _GROUPMESSAGE
 
@@ -354,6 +432,12 @@ class UserEvent(_message.Message):
   DESCRIPTOR = _USEREVENT
 
   # @@protoc_insertion_point(class_scope:UserEvent)
+
+class ChatMessage(_message.Message):
+  __metaclass__ = _reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _CHATMESSAGE
+
+  # @@protoc_insertion_point(class_scope:ChatMessage)
 
 class GroupStatus(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
