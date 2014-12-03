@@ -71,8 +71,10 @@ namespace BridgeChat.XMPP
             var synthjid = SynthesizeJid(nick);
             foreach (var pair in XMPPUsers) {
                 var msg = new Message(pair.Value, synthjid);
-                if (plaintext != null)
-                    msg.Body = plaintext;
+                if (plaintext == null)
+                    throw new NotImplementedException();
+
+                msg.Body = plaintext;
                 if (html != null)
                     msg.Html = new agsXMPP.protocol.extensions.html.Html { InnerXml = html };
                 msg.GenerateId();

@@ -24,7 +24,9 @@ namespace BridgeChat.XMPP
         private readonly ConcurrentDictionary<string, XMPPGroup> Groups = new ConcurrentDictionary<string, XMPPGroup>();
 
         public XMPPModule(string xmppServer, int xmppPort, string xmppPassword, string xmppDomain, string chatServer, int chatPort)
-            : base("XMPP MUC Module", "XMPP", chatServer, chatPort, supportsPlaintext: true, supportsHTML: true)
+            : base("XMPP MUC Module", "XMPP", chatServer, chatPort,
+                new Protocol.MessageFormat[] { Protocol.MessageFormat.Plaintext },
+                new Protocol.MessageFormat[] { Protocol.MessageFormat.Html })
         {
             Domain = xmppDomain;
 

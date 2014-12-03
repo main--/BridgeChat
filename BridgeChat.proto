@@ -1,10 +1,15 @@
+enum MessageFormat {
+  plaintext = 1;
+  html = 2;
+  image_link = 3;
+}
+
 message ModuleIntro {
   required string long_name = 1; // for management
   required string short_name = 2; // for name prefixing
 
-  optional bool supports_plaintext = 100 [default=false];
-  optional bool supports_html = 101 [default=false];
-  optional bool supports_image_link = 102 [default=false];
+  repeated MessageFormat mandatory_formats = 3; // formats the core must always send
+  repeated MessageFormat optional_formats = 4; // formats the core might send, in addition to the mandatory ones
 }
 
 message BindingRequest {

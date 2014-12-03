@@ -1,14 +1,15 @@
 ﻿using System;
-using BridgeChat.PluginBase;
 using System.Security.Cryptography;
 using System.Net;
+
+using BridgeChat.PluginBase;
 
 namespace BridgeChat.ConsoleClient
 {
     public class ConsoleModule : Module
     {
         public ConsoleModule(string server, int port)
-            : base("Console client", "CON", server, port, supportsPlaintext: true)
+            : base("Console client", "CON", server, port, new Protocol.MessageFormat[] { Protocol.MessageFormat.Plaintext })
         {
         }
 

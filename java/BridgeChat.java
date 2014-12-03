@@ -6,6 +6,97 @@ public final class BridgeChat {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  /**
+   * Protobuf enum {@code MessageFormat}
+   */
+  public enum MessageFormat
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>plaintext = 1;</code>
+     */
+    plaintext(0, 1),
+    /**
+     * <code>html = 2;</code>
+     */
+    html(1, 2),
+    /**
+     * <code>image_link = 3;</code>
+     */
+    image_link(2, 3),
+    ;
+
+    /**
+     * <code>plaintext = 1;</code>
+     */
+    public static final int plaintext_VALUE = 1;
+    /**
+     * <code>html = 2;</code>
+     */
+    public static final int html_VALUE = 2;
+    /**
+     * <code>image_link = 3;</code>
+     */
+    public static final int image_link_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static MessageFormat valueOf(int value) {
+      switch (value) {
+        case 1: return plaintext;
+        case 2: return html;
+        case 3: return image_link;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MessageFormat>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<MessageFormat>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MessageFormat>() {
+            public MessageFormat findValueByNumber(int number) {
+              return MessageFormat.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return BridgeChat.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final MessageFormat[] VALUES = values();
+
+    public static MessageFormat valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private MessageFormat(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:MessageFormat)
+  }
+
   public interface ModuleIntroOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -63,35 +154,57 @@ public final class BridgeChat {
     com.google.protobuf.ByteString
         getShortNameBytes();
 
-    // optional bool supports_plaintext = 100 [default = false];
+    // repeated .MessageFormat mandatory_formats = 3;
     /**
-     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
      */
-    boolean hasSupportsPlaintext();
+    java.util.List<BridgeChat.MessageFormat> getMandatoryFormatsList();
     /**
-     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
      */
-    boolean getSupportsPlaintext();
+    int getMandatoryFormatsCount();
+    /**
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
+     */
+    BridgeChat.MessageFormat getMandatoryFormats(int index);
 
-    // optional bool supports_html = 101 [default = false];
+    // repeated .MessageFormat optional_formats = 4;
     /**
-     * <code>optional bool supports_html = 101 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    boolean hasSupportsHtml();
+    java.util.List<BridgeChat.MessageFormat> getOptionalFormatsList();
     /**
-     * <code>optional bool supports_html = 101 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    boolean getSupportsHtml();
-
-    // optional bool supports_image_link = 102 [default = false];
+    int getOptionalFormatsCount();
     /**
-     * <code>optional bool supports_image_link = 102 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    boolean hasSupportsImageLink();
-    /**
-     * <code>optional bool supports_image_link = 102 [default = false];</code>
-     */
-    boolean getSupportsImageLink();
+    BridgeChat.MessageFormat getOptionalFormats(int index);
   }
   /**
    * Protobuf type {@code ModuleIntro}
@@ -154,19 +267,70 @@ public final class BridgeChat {
               shortName_ = input.readBytes();
               break;
             }
-            case 800: {
-              bitField0_ |= 0x00000004;
-              supportsPlaintext_ = input.readBool();
+            case 24: {
+              int rawValue = input.readEnum();
+              BridgeChat.MessageFormat value = BridgeChat.MessageFormat.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                  mandatoryFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>();
+                  mutable_bitField0_ |= 0x00000004;
+                }
+                mandatoryFormats_.add(value);
+              }
               break;
             }
-            case 808: {
-              bitField0_ |= 0x00000008;
-              supportsHtml_ = input.readBool();
+            case 26: {
+              int length = input.readRawVarint32();
+              int oldLimit = input.pushLimit(length);
+              while(input.getBytesUntilLimit() > 0) {
+                int rawValue = input.readEnum();
+                BridgeChat.MessageFormat value = BridgeChat.MessageFormat.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(3, rawValue);
+                } else {
+                  if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                    mandatoryFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>();
+                    mutable_bitField0_ |= 0x00000004;
+                  }
+                  mandatoryFormats_.add(value);
+                }
+              }
+              input.popLimit(oldLimit);
               break;
             }
-            case 816: {
-              bitField0_ |= 0x00000010;
-              supportsImageLink_ = input.readBool();
+            case 32: {
+              int rawValue = input.readEnum();
+              BridgeChat.MessageFormat value = BridgeChat.MessageFormat.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                  optionalFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>();
+                  mutable_bitField0_ |= 0x00000008;
+                }
+                optionalFormats_.add(value);
+              }
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int oldLimit = input.pushLimit(length);
+              while(input.getBytesUntilLimit() > 0) {
+                int rawValue = input.readEnum();
+                BridgeChat.MessageFormat value = BridgeChat.MessageFormat.valueOf(rawValue);
+                if (value == null) {
+                  unknownFields.mergeVarintField(4, rawValue);
+                } else {
+                  if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                    optionalFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>();
+                    mutable_bitField0_ |= 0x00000008;
+                  }
+                  optionalFormats_.add(value);
+                }
+              }
+              input.popLimit(oldLimit);
               break;
             }
           }
@@ -177,6 +341,12 @@ public final class BridgeChat {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          mandatoryFormats_ = java.util.Collections.unmodifiableList(mandatoryFormats_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          optionalFormats_ = java.util.Collections.unmodifiableList(optionalFormats_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -319,60 +489,79 @@ public final class BridgeChat {
       }
     }
 
-    // optional bool supports_plaintext = 100 [default = false];
-    public static final int SUPPORTS_PLAINTEXT_FIELD_NUMBER = 100;
-    private boolean supportsPlaintext_;
+    // repeated .MessageFormat mandatory_formats = 3;
+    public static final int MANDATORY_FORMATS_FIELD_NUMBER = 3;
+    private java.util.List<BridgeChat.MessageFormat> mandatoryFormats_;
     /**
-     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
      */
-    public boolean hasSupportsPlaintext() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+    public java.util.List<BridgeChat.MessageFormat> getMandatoryFormatsList() {
+      return mandatoryFormats_;
     }
     /**
-     * <code>optional bool supports_plaintext = 100 [default = false];</code>
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
      */
-    public boolean getSupportsPlaintext() {
-      return supportsPlaintext_;
+    public int getMandatoryFormatsCount() {
+      return mandatoryFormats_.size();
+    }
+    /**
+     * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+     *
+     * <pre>
+     * formats the core must always send
+     * </pre>
+     */
+    public BridgeChat.MessageFormat getMandatoryFormats(int index) {
+      return mandatoryFormats_.get(index);
     }
 
-    // optional bool supports_html = 101 [default = false];
-    public static final int SUPPORTS_HTML_FIELD_NUMBER = 101;
-    private boolean supportsHtml_;
+    // repeated .MessageFormat optional_formats = 4;
+    public static final int OPTIONAL_FORMATS_FIELD_NUMBER = 4;
+    private java.util.List<BridgeChat.MessageFormat> optionalFormats_;
     /**
-     * <code>optional bool supports_html = 101 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    public boolean hasSupportsHtml() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    public java.util.List<BridgeChat.MessageFormat> getOptionalFormatsList() {
+      return optionalFormats_;
     }
     /**
-     * <code>optional bool supports_html = 101 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    public boolean getSupportsHtml() {
-      return supportsHtml_;
-    }
-
-    // optional bool supports_image_link = 102 [default = false];
-    public static final int SUPPORTS_IMAGE_LINK_FIELD_NUMBER = 102;
-    private boolean supportsImageLink_;
-    /**
-     * <code>optional bool supports_image_link = 102 [default = false];</code>
-     */
-    public boolean hasSupportsImageLink() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+    public int getOptionalFormatsCount() {
+      return optionalFormats_.size();
     }
     /**
-     * <code>optional bool supports_image_link = 102 [default = false];</code>
+     * <code>repeated .MessageFormat optional_formats = 4;</code>
+     *
+     * <pre>
+     * formats the core might send, in addition to the mandatory ones
+     * </pre>
      */
-    public boolean getSupportsImageLink() {
-      return supportsImageLink_;
+    public BridgeChat.MessageFormat getOptionalFormats(int index) {
+      return optionalFormats_.get(index);
     }
 
     private void initFields() {
       longName_ = "";
       shortName_ = "";
-      supportsPlaintext_ = false;
-      supportsHtml_ = false;
-      supportsImageLink_ = false;
+      mandatoryFormats_ = java.util.Collections.emptyList();
+      optionalFormats_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -400,14 +589,11 @@ public final class BridgeChat {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getShortNameBytes());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBool(100, supportsPlaintext_);
+      for (int i = 0; i < mandatoryFormats_.size(); i++) {
+        output.writeEnum(3, mandatoryFormats_.get(i).getNumber());
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBool(101, supportsHtml_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBool(102, supportsImageLink_);
+      for (int i = 0; i < optionalFormats_.size(); i++) {
+        output.writeEnum(4, optionalFormats_.get(i).getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -426,17 +612,23 @@ public final class BridgeChat {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getShortNameBytes());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(100, supportsPlaintext_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < mandatoryFormats_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(mandatoryFormats_.get(i).getNumber());
+        }
+        size += dataSize;
+        size += 1 * mandatoryFormats_.size();
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(101, supportsHtml_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(102, supportsImageLink_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < optionalFormats_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeEnumSizeNoTag(optionalFormats_.get(i).getNumber());
+        }
+        size += dataSize;
+        size += 1 * optionalFormats_.size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -558,12 +750,10 @@ public final class BridgeChat {
         bitField0_ = (bitField0_ & ~0x00000001);
         shortName_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        supportsPlaintext_ = false;
+        mandatoryFormats_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000004);
-        supportsHtml_ = false;
+        optionalFormats_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
-        supportsImageLink_ = false;
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -600,18 +790,16 @@ public final class BridgeChat {
           to_bitField0_ |= 0x00000002;
         }
         result.shortName_ = shortName_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          mandatoryFormats_ = java.util.Collections.unmodifiableList(mandatoryFormats_);
+          bitField0_ = (bitField0_ & ~0x00000004);
         }
-        result.supportsPlaintext_ = supportsPlaintext_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+        result.mandatoryFormats_ = mandatoryFormats_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          optionalFormats_ = java.util.Collections.unmodifiableList(optionalFormats_);
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
-        result.supportsHtml_ = supportsHtml_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.supportsImageLink_ = supportsImageLink_;
+        result.optionalFormats_ = optionalFormats_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -638,14 +826,25 @@ public final class BridgeChat {
           shortName_ = other.shortName_;
           onChanged();
         }
-        if (other.hasSupportsPlaintext()) {
-          setSupportsPlaintext(other.getSupportsPlaintext());
+        if (!other.mandatoryFormats_.isEmpty()) {
+          if (mandatoryFormats_.isEmpty()) {
+            mandatoryFormats_ = other.mandatoryFormats_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureMandatoryFormatsIsMutable();
+            mandatoryFormats_.addAll(other.mandatoryFormats_);
+          }
+          onChanged();
         }
-        if (other.hasSupportsHtml()) {
-          setSupportsHtml(other.getSupportsHtml());
-        }
-        if (other.hasSupportsImageLink()) {
-          setSupportsImageLink(other.getSupportsImageLink());
+        if (!other.optionalFormats_.isEmpty()) {
+          if (optionalFormats_.isEmpty()) {
+            optionalFormats_ = other.optionalFormats_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureOptionalFormatsIsMutable();
+            optionalFormats_.addAll(other.optionalFormats_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -878,101 +1077,202 @@ public final class BridgeChat {
         return this;
       }
 
-      // optional bool supports_plaintext = 100 [default = false];
-      private boolean supportsPlaintext_ ;
-      /**
-       * <code>optional bool supports_plaintext = 100 [default = false];</code>
-       */
-      public boolean hasSupportsPlaintext() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+      // repeated .MessageFormat mandatory_formats = 3;
+      private java.util.List<BridgeChat.MessageFormat> mandatoryFormats_ =
+        java.util.Collections.emptyList();
+      private void ensureMandatoryFormatsIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          mandatoryFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>(mandatoryFormats_);
+          bitField0_ |= 0x00000004;
+        }
       }
       /**
-       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
        */
-      public boolean getSupportsPlaintext() {
-        return supportsPlaintext_;
+      public java.util.List<BridgeChat.MessageFormat> getMandatoryFormatsList() {
+        return java.util.Collections.unmodifiableList(mandatoryFormats_);
       }
       /**
-       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
        */
-      public Builder setSupportsPlaintext(boolean value) {
-        bitField0_ |= 0x00000004;
-        supportsPlaintext_ = value;
+      public int getMandatoryFormatsCount() {
+        return mandatoryFormats_.size();
+      }
+      /**
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
+       */
+      public BridgeChat.MessageFormat getMandatoryFormats(int index) {
+        return mandatoryFormats_.get(index);
+      }
+      /**
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
+       */
+      public Builder setMandatoryFormats(
+          int index, BridgeChat.MessageFormat value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureMandatoryFormatsIsMutable();
+        mandatoryFormats_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool supports_plaintext = 100 [default = false];</code>
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
        */
-      public Builder clearSupportsPlaintext() {
+      public Builder addMandatoryFormats(BridgeChat.MessageFormat value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureMandatoryFormatsIsMutable();
+        mandatoryFormats_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
+       */
+      public Builder addAllMandatoryFormats(
+          java.lang.Iterable<? extends BridgeChat.MessageFormat> values) {
+        ensureMandatoryFormatsIsMutable();
+        super.addAll(values, mandatoryFormats_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .MessageFormat mandatory_formats = 3;</code>
+       *
+       * <pre>
+       * formats the core must always send
+       * </pre>
+       */
+      public Builder clearMandatoryFormats() {
+        mandatoryFormats_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000004);
-        supportsPlaintext_ = false;
         onChanged();
         return this;
       }
 
-      // optional bool supports_html = 101 [default = false];
-      private boolean supportsHtml_ ;
-      /**
-       * <code>optional bool supports_html = 101 [default = false];</code>
-       */
-      public boolean hasSupportsHtml() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+      // repeated .MessageFormat optional_formats = 4;
+      private java.util.List<BridgeChat.MessageFormat> optionalFormats_ =
+        java.util.Collections.emptyList();
+      private void ensureOptionalFormatsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          optionalFormats_ = new java.util.ArrayList<BridgeChat.MessageFormat>(optionalFormats_);
+          bitField0_ |= 0x00000008;
+        }
       }
       /**
-       * <code>optional bool supports_html = 101 [default = false];</code>
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
        */
-      public boolean getSupportsHtml() {
-        return supportsHtml_;
+      public java.util.List<BridgeChat.MessageFormat> getOptionalFormatsList() {
+        return java.util.Collections.unmodifiableList(optionalFormats_);
       }
       /**
-       * <code>optional bool supports_html = 101 [default = false];</code>
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
        */
-      public Builder setSupportsHtml(boolean value) {
-        bitField0_ |= 0x00000008;
-        supportsHtml_ = value;
+      public int getOptionalFormatsCount() {
+        return optionalFormats_.size();
+      }
+      /**
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
+       */
+      public BridgeChat.MessageFormat getOptionalFormats(int index) {
+        return optionalFormats_.get(index);
+      }
+      /**
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
+       */
+      public Builder setOptionalFormats(
+          int index, BridgeChat.MessageFormat value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureOptionalFormatsIsMutable();
+        optionalFormats_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional bool supports_html = 101 [default = false];</code>
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
        */
-      public Builder clearSupportsHtml() {
+      public Builder addOptionalFormats(BridgeChat.MessageFormat value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureOptionalFormatsIsMutable();
+        optionalFormats_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
+       */
+      public Builder addAllOptionalFormats(
+          java.lang.Iterable<? extends BridgeChat.MessageFormat> values) {
+        ensureOptionalFormatsIsMutable();
+        super.addAll(values, optionalFormats_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated .MessageFormat optional_formats = 4;</code>
+       *
+       * <pre>
+       * formats the core might send, in addition to the mandatory ones
+       * </pre>
+       */
+      public Builder clearOptionalFormats() {
+        optionalFormats_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
-        supportsHtml_ = false;
-        onChanged();
-        return this;
-      }
-
-      // optional bool supports_image_link = 102 [default = false];
-      private boolean supportsImageLink_ ;
-      /**
-       * <code>optional bool supports_image_link = 102 [default = false];</code>
-       */
-      public boolean hasSupportsImageLink() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>optional bool supports_image_link = 102 [default = false];</code>
-       */
-      public boolean getSupportsImageLink() {
-        return supportsImageLink_;
-      }
-      /**
-       * <code>optional bool supports_image_link = 102 [default = false];</code>
-       */
-      public Builder setSupportsImageLink(boolean value) {
-        bitField0_ |= 0x00000010;
-        supportsImageLink_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool supports_image_link = 102 [default = false];</code>
-       */
-      public Builder clearSupportsImageLink() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        supportsImageLink_ = false;
         onChanged();
         return this;
       }
@@ -6747,26 +7047,27 @@ public final class BridgeChat {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020BridgeChat.proto\"\231\001\n\013ModuleIntro\022\021\n\tlo" +
-      "ng_name\030\001 \002(\t\022\022\n\nshort_name\030\002 \002(\t\022!\n\022sup" +
-      "ports_plaintext\030d \001(\010:\005false\022\034\n\rsupports" +
-      "_html\030e \001(\010:\005false\022\"\n\023supports_image_lin" +
-      "k\030f \001(\010:\005false\"#\n\016BindingRequest\022\021\n\tbind" +
-      "_info\030\001 \002(\t\"6\n\017BindingResponse\022\017\n\007succes" +
-      "s\030\001 \002(\010\022\022\n\ndiagnostic\030\002 \001(\t\"\017\n\rUnbindReq" +
-      "uest\"#\n\nUserStatus\022\025\n\ronline_status\030\002 \001(" +
-      "\010\"v\n\tUserEvent\022\020\n\010username\030\001 \002(\t\022\021\n\tplug" +
-      "in_id\030\002 \001(\t\022 \n\013user_status\030e \001(\0132\013.UserS",
-      "tatus\022\"\n\014chat_message\030f \001(\0132\014.ChatMessag" +
-      "e\"B\n\013ChatMessage\022\021\n\tplaintext\030\001 \001(\t\022\014\n\004h" +
-      "tml\030\002 \001(\t\022\022\n\nimage_link\030\003 \001(\t\"\034\n\013GroupSt" +
-      "atus\022\r\n\005topic\030\001 \001(\t\"\351\001\n\014GroupMessage\022\020\n\010" +
-      "group_id\030\001 \002(\r\022(\n\017binding_request\030e \001(\0132" +
-      "\017.BindingRequest\022*\n\020binding_response\030f \001" +
-      "(\0132\020.BindingResponse\022&\n\016unbind_request\030g" +
-      " \001(\0132\016.UnbindRequest\022)\n\023group_status_cha" +
-      "nge\030h \001(\0132\014.GroupStatus\022\036\n\nuser_event\030i " +
-      "\001(\0132\n.UserEvent"
+      "\n\020BridgeChat.proto\"\211\001\n\013ModuleIntro\022\021\n\tlo" +
+      "ng_name\030\001 \002(\t\022\022\n\nshort_name\030\002 \002(\t\022)\n\021man" +
+      "datory_formats\030\003 \003(\0162\016.MessageFormat\022(\n\020" +
+      "optional_formats\030\004 \003(\0162\016.MessageFormat\"#" +
+      "\n\016BindingRequest\022\021\n\tbind_info\030\001 \002(\t\"6\n\017B" +
+      "indingResponse\022\017\n\007success\030\001 \002(\010\022\022\n\ndiagn" +
+      "ostic\030\002 \001(\t\"\017\n\rUnbindRequest\"#\n\nUserStat" +
+      "us\022\025\n\ronline_status\030\002 \001(\010\"v\n\tUserEvent\022\020" +
+      "\n\010username\030\001 \002(\t\022\021\n\tplugin_id\030\002 \001(\t\022 \n\013u" +
+      "ser_status\030e \001(\0132\013.UserStatus\022\"\n\014chat_me",
+      "ssage\030f \001(\0132\014.ChatMessage\"B\n\013ChatMessage" +
+      "\022\021\n\tplaintext\030\001 \001(\t\022\014\n\004html\030\002 \001(\t\022\022\n\nima" +
+      "ge_link\030\003 \001(\t\"\034\n\013GroupStatus\022\r\n\005topic\030\001 " +
+      "\001(\t\"\351\001\n\014GroupMessage\022\020\n\010group_id\030\001 \002(\r\022(" +
+      "\n\017binding_request\030e \001(\0132\017.BindingRequest" +
+      "\022*\n\020binding_response\030f \001(\0132\020.BindingResp" +
+      "onse\022&\n\016unbind_request\030g \001(\0132\016.UnbindReq" +
+      "uest\022)\n\023group_status_change\030h \001(\0132\014.Grou" +
+      "pStatus\022\036\n\nuser_event\030i \001(\0132\n.UserEvent*" +
+      "8\n\rMessageFormat\022\r\n\tplaintext\020\001\022\010\n\004html\020",
+      "\002\022\016\n\nimage_link\020\003"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6778,7 +7079,7 @@ public final class BridgeChat {
           internal_static_ModuleIntro_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ModuleIntro_descriptor,
-              new java.lang.String[] { "LongName", "ShortName", "SupportsPlaintext", "SupportsHtml", "SupportsImageLink", });
+              new java.lang.String[] { "LongName", "ShortName", "MandatoryFormats", "OptionalFormats", });
           internal_static_BindingRequest_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_BindingRequest_fieldAccessorTable = new

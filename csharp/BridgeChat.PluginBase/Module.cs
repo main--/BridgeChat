@@ -8,6 +8,7 @@ using BridgeChat.Protocol;
 using ProtoBuf;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
 
 namespace BridgeChat.PluginBase
 {
@@ -22,27 +23,18 @@ namespace BridgeChat.PluginBase
         private readonly ConcurrentDictionary<uint, Group> Groups = new ConcurrentDictionary<uint, Group>();
         private bool ShuttingDown;
 
-        // supported formats
-        private readonly bool SupportsPlaintext;
-        private readonly bool SupportsHTML;
-        private readonly bool SupportsImageLink;
+        private readonly Protocol.MessageFormat[] MandatoryFormats, OptionalFormats;
 
         public Module(string longName, string shortName, string server, int port,
-            bool supportsPlaintext = false, bool supportsHTML = false, bool supportsImageLink = false)
+            Protocol.MessageFormat[] mandatoryFormats, Protocol.MessageFormat[] optionalFormats = null)
         {
             LongName = longName;
             ShortName = shortName;
             Server = server;
             Port = port;
 
-            SupportsPlaintext = supportsPlaintext;
-            SupportsHTML = supportsHTML;
-            SupportsImageLink = supportsImageLink;
-
-            // quick sanity check
-            bool supportsAnything = SupportsPlaintext || SupportsHTML || SupportsImageLink;
-            if (!supportsAnything)
-                throw new InvalidOperationException("If you don't support *anything*, how are you going to receive messages!?");
+            MandatoryFormats = mandatoryFormats ?? new MessageFormat[0];
+            OptionalFormats = optionalFormats ?? new MessageFormat[0];
         }
 
         public abstract bool TryBindGroup(uint groupid, string parameter, out Group result, out string diagnostics);
@@ -65,14 +57,13 @@ namespace BridgeChat.PluginBase
             await Client.ConnectAsync(Server, Port);
             Debug.WriteLine("connected!");
             using (var netstream = Client.GetStream()) {
-                var intro = Protocol.Util.ProtobufSerialize(new Protocol.ModuleIntro {
+                var moduleIntro = new Protocol.ModuleIntro {
                     LongName = LongName,
                     ShortName = ShortName,
-
-                    SupportsPlaintext = SupportsPlaintext,
-                    SupportsHtml = SupportsHTML,
-                    SupportsImageLink = SupportsImageLink
-                });
+                };
+                moduleIntro.MandatoryFormats.AddRange(MandatoryFormats);
+                moduleIntro.MandatoryFormats.AddRange(OptionalFormats);
+                var intro = Protocol.Util.ProtobufSerialize(moduleIntro);
                 await netstream.WriteAsync(intro, 0, intro.Length);
 
                 // main loop:

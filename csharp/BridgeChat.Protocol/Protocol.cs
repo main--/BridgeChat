@@ -31,57 +31,20 @@ namespace BridgeChat.Protocol
       get { return _shortName; }
       set { _shortName = value; }
     }
-    private bool? _supportsPlaintext;
-    [global::ProtoBuf.ProtoMember(100, IsRequired = false, Name=@"supports_plaintext", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public bool SupportsPlaintext
+    private readonly global::System.Collections.Generic.List<MessageFormat> _mandatoryFormats = new global::System.Collections.Generic.List<MessageFormat>();
+    [global::ProtoBuf.ProtoMember(3, Name=@"mandatory_formats", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public global::System.Collections.Generic.List<MessageFormat> MandatoryFormats
     {
-      get { return _supportsPlaintext?? (bool)false; }
-      set { _supportsPlaintext = value; }
+      get { return _mandatoryFormats; }
     }
-    [global::System.Xml.Serialization.XmlIgnore]
-    [global::System.ComponentModel.Browsable(false)]
-    public bool SupportsPlaintextSpecified
+  
+    private readonly global::System.Collections.Generic.List<MessageFormat> _optionalFormats = new global::System.Collections.Generic.List<MessageFormat>();
+    [global::ProtoBuf.ProtoMember(4, Name=@"optional_formats", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public global::System.Collections.Generic.List<MessageFormat> OptionalFormats
     {
-      get { return this._supportsPlaintext != null; }
-      set { if (value == (this._supportsPlaintext== null)) this._supportsPlaintext = value ? this.SupportsPlaintext : (bool?)null; }
+      get { return _optionalFormats; }
     }
-    private bool ShouldSerializeSupportsPlaintext() { return SupportsPlaintextSpecified; }
-    private void ResetSupportsPlaintext() { SupportsPlaintextSpecified = false; }
-    
-    private bool? _supportsHtml;
-    [global::ProtoBuf.ProtoMember(101, IsRequired = false, Name=@"supports_html", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public bool SupportsHtml
-    {
-      get { return _supportsHtml?? (bool)false; }
-      set { _supportsHtml = value; }
-    }
-    [global::System.Xml.Serialization.XmlIgnore]
-    [global::System.ComponentModel.Browsable(false)]
-    public bool SupportsHtmlSpecified
-    {
-      get { return this._supportsHtml != null; }
-      set { if (value == (this._supportsHtml== null)) this._supportsHtml = value ? this.SupportsHtml : (bool?)null; }
-    }
-    private bool ShouldSerializeSupportsHtml() { return SupportsHtmlSpecified; }
-    private void ResetSupportsHtml() { SupportsHtmlSpecified = false; }
-    
-    private bool? _supportsImageLink;
-    [global::ProtoBuf.ProtoMember(102, IsRequired = false, Name=@"supports_image_link", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public bool SupportsImageLink
-    {
-      get { return _supportsImageLink?? (bool)false; }
-      set { _supportsImageLink = value; }
-    }
-    [global::System.Xml.Serialization.XmlIgnore]
-    [global::System.ComponentModel.Browsable(false)]
-    public bool SupportsImageLinkSpecified
-    {
-      get { return this._supportsImageLink != null; }
-      set { if (value == (this._supportsImageLink== null)) this._supportsImageLink = value ? this.SupportsImageLink : (bool?)null; }
-    }
-    private bool ShouldSerializeSupportsImageLink() { return SupportsImageLinkSpecified; }
-    private void ResetSupportsImageLink() { SupportsImageLinkSpecified = false; }
-    
+  
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
@@ -369,5 +332,19 @@ namespace BridgeChat.Protocol
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"MessageFormat")]
+    public enum MessageFormat
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"plaintext", Value=1)]
+      Plaintext = 1,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"html", Value=2)]
+      Html = 2,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"image_link", Value=3)]
+      ImageLink = 3
+    }
   
 }
