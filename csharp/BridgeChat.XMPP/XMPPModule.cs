@@ -118,7 +118,9 @@ namespace BridgeChat.XMPP
                 // TODO: handle nick/presence changes
 
                 var target = pres.To;
-                if (!pres.HasAttribute("type")) {
+                if (pres.HasTag("show") || pres.HasTag("status")) {
+                    // presence update, just ignore these for now
+                } else if (!pres.HasAttribute("type")) {
                     if (target.Server == Domain) {
                         var roomname = target.User;
                         var theirnick = target.Resource;
