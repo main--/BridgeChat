@@ -22,12 +22,27 @@ namespace BridgeChat.PluginBase
         private readonly ConcurrentDictionary<uint, Group> Groups = new ConcurrentDictionary<uint, Group>();
         private bool ShuttingDown;
 
-        public Module(string longName, string shortName, string server, int port)
+        // supported formats
+        private readonly bool SupportsPlaintext;
+        private readonly bool SupportsHTML;
+        private readonly bool SupportsImageLink;
+
+        public Module(string longName, string shortName, string server, int port,
+            bool supportsPlaintext = false, bool supportsHTML = false, bool supportsImageLink = false)
         {
             LongName = longName;
             ShortName = shortName;
             Server = server;
             Port = port;
+
+            SupportsPlaintext = supportsPlaintext;
+            SupportsHTML = supportsHTML;
+            SupportsImageLink = supportsImageLink;
+
+            // quick sanity check
+            bool supportsAnything = SupportsPlaintext || SupportsHTML || SupportsImageLink;
+            if (!supportsAnything)
+                throw new InvalidOperationException("If you don't support *anything*, how are you going to receive messages!?");
         }
 
         public abstract bool TryBindGroup(uint groupid, string parameter, out Group result, out string diagnostics);
@@ -53,6 +68,10 @@ namespace BridgeChat.PluginBase
                 var intro = Protocol.Util.ProtobufSerialize(new Protocol.ModuleIntro {
                     LongName = LongName,
                     ShortName = ShortName,
+
+                    SupportsPlaintext = SupportsPlaintext,
+                    SupportsHtml = SupportsHTML,
+                    SupportsImageLink = SupportsImageLink
                 });
                 await netstream.WriteAsync(intro, 0, intro.Length);
 
@@ -105,7 +124,7 @@ namespace BridgeChat.PluginBase
                                 if (!ue.PluginIdSpecified)
                                     throw new ProtocolViolationException();
 
-                                if (ue.ChatMessageSpecified)
+                                if (ue.ChatMessage != null)
                                     group.HandleMessage(ue.PluginId, ue.Username, ue.ChatMessage);
 
                                 if (ue.UserStatus != null) {

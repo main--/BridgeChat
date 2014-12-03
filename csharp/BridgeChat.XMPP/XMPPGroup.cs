@@ -66,23 +66,32 @@ namespace BridgeChat.XMPP
             return new Jid(MUCName, Module.Domain, nick);
         }
 
-        private void RelayMessage(string nick, string message)
+        private void RelayMessage(string nick, string plaintext, string html)
         {
             var synthjid = SynthesizeJid(nick);
             foreach (var pair in XMPPUsers) {
-                var msg = new Message(pair.Value, synthjid, message);
+                var msg = new Message(pair.Value, synthjid);
+                if (plaintext != null)
+                    msg.Body = plaintext;
+                if (html != null)
+                    msg.Html = new agsXMPP.protocol.extensions.html.Html { InnerXml = html };
                 msg.GenerateId();
                 msg.Type = agsXMPP.protocol.client.MessageType.groupchat;
                 Module.Connection.Send(msg);
             }
         }
 
-        public void SendMessage(Jid sender, string message) {
+        public void SendMessage(Jid sender, string plaintext, string html) {
             // map Jid to nick
             var nick = XMPPUsers.Where(pair => pair.Value.Equals(sender)).Single().Key;
 
-            RelayMessage(nick, message); // send to XMPP clients
-            base.SendMessage(nick, message); // send out to server
+            RelayMessage(nick, plaintext, html); // send to XMPP clients
+            var msg = new Protocol.ChatMessage();
+            if (plaintext != null)
+                msg.Plaintext = plaintext;
+            if (html != null)
+                msg.Html = html;
+            base.SendMessage(nick, msg); // send out to server
         }
 
         public override void HandleTopicChange(string topic)
@@ -103,9 +112,10 @@ namespace BridgeChat.XMPP
             }
         }
 
-        public override void HandleMessage(string module, string username, string message)
+        public override void HandleMessage(string module, string username, Protocol.ChatMessage message)
         {
-            RelayMessage(CoerceName(module, username), message);
+            RelayMessage(CoerceName(module, username), message.PlaintextSpecified ? message.Plaintext : null,
+                message.HtmlSpecified ? message.Html : null);
         }
 
         public void RelayNewUser(Jid jid, string except = null)

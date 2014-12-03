@@ -77,7 +77,7 @@ namespace BridgeChat.PluginBase
             }
         }
 
-        public void SendMessage(string username, string message)
+        public void SendMessage(string username, Protocol.ChatMessage message)
         {
             Module.QueueMessage(new GroupMessage {
                 GroupId = Id,
@@ -90,7 +90,7 @@ namespace BridgeChat.PluginBase
             _Topic = topic;
         }
 
-        public abstract void HandleMessage(string module, string username, string message);
+        public abstract void HandleMessage(string module, string username, Protocol.ChatMessage message);
         public virtual void AddUser(string module, string username)
         {
             _RemoteUsers.Add(Tuple.Create(module, username));

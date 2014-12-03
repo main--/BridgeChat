@@ -30,6 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="protobuf-net">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -43,5 +46,12 @@
       <Project>{CF04032E-33AB-48ED-B158-7523581EF855}</Project>
       <Name>BridgeChat.PluginBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BridgeChat.Protocol\BridgeChat.Protocol.csproj">
+      <Project>{A348C780-C35E-49AC-A47F-016022BB2C6F}</Project>
+      <Name>BridgeChat.Protocol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

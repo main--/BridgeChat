@@ -46,7 +46,7 @@ namespace BridgeChat.Core
             Update(this);
         }
 
-        public void SendMessage(Module module, string user, string message)
+        public void SendMessage(Module module, string user, Protocol.ChatMessage message)
         {
             foreach (var mod in BoundModules)
                 if (mod != module)

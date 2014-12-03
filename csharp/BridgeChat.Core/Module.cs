@@ -55,7 +55,7 @@ namespace BridgeChat.Core
             });
         }
 
-        public void SendChatMessage(uint group, Module module, string username, string message)
+        public void SendChatMessage(uint group, Module module, string username, Protocol.ChatMessage message)
         {
             QueueMessage(new Protocol.GroupMessage {
                 GroupId = group,
@@ -119,7 +119,7 @@ namespace BridgeChat.Core
                         bindmsg = String.Format(bindmsg, LongName);
                         if (br.DiagnosticSpecified)
                             bindmsg += ": " + br.Diagnostic;
-                        group.SendMessage(ServerManagementModule, "Module manager", bindmsg);
+                        group.SendMessage(ServerManagementModule, "Module manager", new Protocol.ChatMessage { Plaintext = bindmsg });
                     } else if (msg.GroupStatusChange != null) {
                         var gsc = msg.GroupStatusChange;
                         if (gsc.TopicSpecified)
@@ -129,7 +129,7 @@ namespace BridgeChat.Core
                         if (ue.PluginIdSpecified)
                             throw new ProtocolViolationException();
 
-                        if (ue.ChatMessageSpecified)
+                        if (ue.ChatMessage != null)
                             group.SendMessage(this, ue.Username, ue.ChatMessage);
 
                         if (ue.UserStatus != null) {

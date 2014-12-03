@@ -31,6 +31,57 @@ namespace BridgeChat.Protocol
       get { return _shortName; }
       set { _shortName = value; }
     }
+    private bool? _supportsPlaintext;
+    [global::ProtoBuf.ProtoMember(100, IsRequired = false, Name=@"supports_plaintext", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public bool SupportsPlaintext
+    {
+      get { return _supportsPlaintext?? (bool)false; }
+      set { _supportsPlaintext = value; }
+    }
+    [global::System.Xml.Serialization.XmlIgnore]
+    [global::System.ComponentModel.Browsable(false)]
+    public bool SupportsPlaintextSpecified
+    {
+      get { return this._supportsPlaintext != null; }
+      set { if (value == (this._supportsPlaintext== null)) this._supportsPlaintext = value ? this.SupportsPlaintext : (bool?)null; }
+    }
+    private bool ShouldSerializeSupportsPlaintext() { return SupportsPlaintextSpecified; }
+    private void ResetSupportsPlaintext() { SupportsPlaintextSpecified = false; }
+    
+    private bool? _supportsHtml;
+    [global::ProtoBuf.ProtoMember(101, IsRequired = false, Name=@"supports_html", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public bool SupportsHtml
+    {
+      get { return _supportsHtml?? (bool)false; }
+      set { _supportsHtml = value; }
+    }
+    [global::System.Xml.Serialization.XmlIgnore]
+    [global::System.ComponentModel.Browsable(false)]
+    public bool SupportsHtmlSpecified
+    {
+      get { return this._supportsHtml != null; }
+      set { if (value == (this._supportsHtml== null)) this._supportsHtml = value ? this.SupportsHtml : (bool?)null; }
+    }
+    private bool ShouldSerializeSupportsHtml() { return SupportsHtmlSpecified; }
+    private void ResetSupportsHtml() { SupportsHtmlSpecified = false; }
+    
+    private bool? _supportsImageLink;
+    [global::ProtoBuf.ProtoMember(102, IsRequired = false, Name=@"supports_image_link", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public bool SupportsImageLink
+    {
+      get { return _supportsImageLink?? (bool)false; }
+      set { _supportsImageLink = value; }
+    }
+    [global::System.Xml.Serialization.XmlIgnore]
+    [global::System.ComponentModel.Browsable(false)]
+    public bool SupportsImageLinkSpecified
+    {
+      get { return this._supportsImageLink != null; }
+      set { if (value == (this._supportsImageLink== null)) this._supportsImageLink = value ? this.SupportsImageLink : (bool?)null; }
+    }
+    private bool ShouldSerializeSupportsImageLink() { return SupportsImageLinkSpecified; }
+    private void ResetSupportsImageLink() { SupportsImageLinkSpecified = false; }
+    
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
@@ -161,22 +212,74 @@ namespace BridgeChat.Protocol
       get { return _userStatus; }
       set { _userStatus = value; }
     }
-    private string _chatMessage;
+    private ChatMessage _chatMessage = null;
     [global::ProtoBuf.ProtoMember(102, IsRequired = false, Name=@"chat_message", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string ChatMessage
+    [global::System.ComponentModel.DefaultValue(null)]
+    public ChatMessage ChatMessage
     {
-      get { return _chatMessage?? ""; }
+      get { return _chatMessage; }
       set { _chatMessage = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"ChatMessage")]
+  public partial class ChatMessage : global::ProtoBuf.IExtensible
+  {
+    public ChatMessage() {}
+    
+    private string _plaintext;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"plaintext", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string Plaintext
+    {
+      get { return _plaintext?? ""; }
+      set { _plaintext = value; }
     }
     [global::System.Xml.Serialization.XmlIgnore]
     [global::System.ComponentModel.Browsable(false)]
-    public bool ChatMessageSpecified
+    public bool PlaintextSpecified
     {
-      get { return this._chatMessage != null; }
-      set { if (value == (this._chatMessage== null)) this._chatMessage = value ? this.ChatMessage : (string)null; }
+      get { return this._plaintext != null; }
+      set { if (value == (this._plaintext== null)) this._plaintext = value ? this.Plaintext : (string)null; }
     }
-    private bool ShouldSerializeChatMessage() { return ChatMessageSpecified; }
-    private void ResetChatMessage() { ChatMessageSpecified = false; }
+    private bool ShouldSerializePlaintext() { return PlaintextSpecified; }
+    private void ResetPlaintext() { PlaintextSpecified = false; }
+    
+    private string _html;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"html", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string Html
+    {
+      get { return _html?? ""; }
+      set { _html = value; }
+    }
+    [global::System.Xml.Serialization.XmlIgnore]
+    [global::System.ComponentModel.Browsable(false)]
+    public bool HtmlSpecified
+    {
+      get { return this._html != null; }
+      set { if (value == (this._html== null)) this._html = value ? this.Html : (string)null; }
+    }
+    private bool ShouldSerializeHtml() { return HtmlSpecified; }
+    private void ResetHtml() { HtmlSpecified = false; }
+    
+    private string _imageLink;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"image_link", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string ImageLink
+    {
+      get { return _imageLink?? ""; }
+      set { _imageLink = value; }
+    }
+    [global::System.Xml.Serialization.XmlIgnore]
+    [global::System.ComponentModel.Browsable(false)]
+    public bool ImageLinkSpecified
+    {
+      get { return this._imageLink != null; }
+      set { if (value == (this._imageLink== null)) this._imageLink = value ? this.ImageLink : (string)null; }
+    }
+    private bool ShouldSerializeImageLink() { return ImageLinkSpecified; }
+    private void ResetImageLink() { ImageLinkSpecified = false; }
     
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)

@@ -8,7 +8,7 @@ namespace BridgeChat.ConsoleClient
     public class ConsoleModule : Module
     {
         public ConsoleModule(string server, int port)
-            : base("Console client", "CON", server, port)
+            : base("Console client", "CON", server, port, supportsPlaintext: true)
         {
         }
 

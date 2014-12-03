@@ -20,7 +20,7 @@ namespace BridgeChat.ConsoleClient
                         MyUsers.Remove(name);
                         break;
                     }
-                    SendMessage(name, line);
+                    SendMessage(name, new Protocol.ChatMessage { Plaintext = line });
                 }
             }).Start();
         }
@@ -29,9 +29,9 @@ namespace BridgeChat.ConsoleClient
         {
             Console.WriteLine("Topic has been set to: {0}", topic);
         }
-        public override void HandleMessage(string module, string username, string message)
+        public override void HandleMessage(string module, string username, Protocol.ChatMessage message)
         {
-            Console.WriteLine("[{0}] {1}: {2}", module, username, message);
+            Console.WriteLine("[{0}] {1}: {2}", module, username, message.Plaintext);
         }
         public override void AddUser(string module, string username)
         {

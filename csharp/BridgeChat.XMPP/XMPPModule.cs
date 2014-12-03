@@ -24,7 +24,7 @@ namespace BridgeChat.XMPP
         private readonly ConcurrentDictionary<string, XMPPGroup> Groups = new ConcurrentDictionary<string, XMPPGroup>();
 
         public XMPPModule(string xmppServer, int xmppPort, string xmppPassword, string xmppDomain, string chatServer, int chatPort)
-            : base("XMPP MUC Module", "XMPP", chatServer, chatPort)
+            : base("XMPP MUC Module", "XMPP", chatServer, chatPort, supportsPlaintext: true, supportsHTML: true)
         {
             Domain = xmppDomain;
 
@@ -86,7 +86,7 @@ namespace BridgeChat.XMPP
                         if (msg.Type == MessageType.groupchat) {
                             if (msg.HasTag("body"))
                                 // simple chat message
-                                group.SendMessage(msg.From, msg.Body);
+                                group.SendMessage(msg.From, msg.Body, msg.HasTag("html") ? msg.Html.InnerXml : null);
                             else {
                                 // subject change
                                 group.Topic = msg.Subject;
