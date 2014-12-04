@@ -13,12 +13,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.XMPP", "BridgeCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeChat.ConversionFramework", "BridgeChat.ConversionFramework\BridgeChat.ConversionFramework.csproj", "{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}.Debug|x86.Build.0 = Debug|Any CPU
+		{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}.Release|x86.ActiveCfg = Release|Any CPU
+		{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}.Release|x86.Build.0 = Release|Any CPU
 		{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}.Debug|x86.Build.0 = Debug|Any CPU
 		{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}.Release|x86.ActiveCfg = Release|Any CPU

@@ -30,7 +30,7 @@ namespace BridgeChat.Core
                 yield return new ImageLink { Content = msg.ImageLink };
         }
 
-        public static ChatMessage PostprocessAfterConversionFramework(object[] output) {
+        public static ChatMessage PostprocessAfterConversionFramework(IEnumerable<object> output) {
             var msg = new ChatMessage();
             foreach (var item in output) {
                 var plaintext = item as Plaintext;

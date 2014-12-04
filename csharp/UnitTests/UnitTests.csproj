@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}</ProjectGuid>
+    <ProjectGuid>{111ABCC0-127E-4EA1-B22E-D7FEB59C3C97}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BridgeChat.ConversionFramework</RootNamespace>
-    <AssemblyName>BridgeChat.ConversionFramework</AssemblyName>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -29,26 +29,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="nunit.framework, Version=2.6.3.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <Package>nunit</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MessageType\HTML.cs" />
-    <Compile Include="MessageType\Plaintext.cs" />
-    <Compile Include="IConverter.cs" />
-    <Compile Include="ConverterBase.cs" />
-    <Compile Include="Converters\HTML2Plaintext.cs" />
-    <Compile Include="ConversionManager.cs" />
-    <Compile Include="MessageType\ImageLink.cs" />
-    <Compile Include="LookupUtil.cs" />
-    <Compile Include="GenericDijkstra.cs" />
-    <Compile Include="Converters\Plaintext2HTML.cs" />
-    <Compile Include="Converters\ImageLink2HTML.cs" />
-    <Compile Include="Converters\HTML2ImageLink.cs" />
+    <Compile Include="TestDijkstra.cs" />
+    <Compile Include="TestConversionManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="MessageType\" />
-    <Folder Include="Converters\" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BridgeChat.ConversionFramework\BridgeChat.ConversionFramework.csproj">
+      <Project>{273E46CA-A6F4-4BCD-A5C2-3CC67E1FE36A}</Project>
+      <Name>BridgeChat.ConversionFramework</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
