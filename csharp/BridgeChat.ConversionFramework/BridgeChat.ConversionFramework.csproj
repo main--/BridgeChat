@@ -39,6 +39,7 @@
     <Compile Include="ConverterBase.cs" />
     <Compile Include="Converters\HTML2Plaintext.cs" />
     <Compile Include="ConversionManager.cs" />
+    <Compile Include="MessageType\ImageLink.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

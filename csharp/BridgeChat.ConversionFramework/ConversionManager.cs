@@ -7,6 +7,9 @@ namespace BridgeChat.ConversionFramework
 {
     public class ConversionManager
     {
+        public static ConversionManager Instance { get; private set; }
+        static ConversionManager() { Instance = new ConversionManager(); }
+
         private readonly IDictionary<Type, IEnumerable<IConverter>> ConversionGraph = new Dictionary<Type, IEnumerable<IConverter>>();
 
         public ConversionManager()
@@ -19,9 +22,9 @@ namespace BridgeChat.ConversionFramework
                 ConversionGraph.Add(type, converters.Where(converter => converter.Input == type).ToArray());
         }
 
-        public object[] RunConversion(object[] inputs, Type[] outputs)
+        public object[] RunConversion(object[] inputs, Type[] mandatoryOutputs, Type[] optionalOutputs)
         {
-            var maybeAwesome = inputs.Where(o => outputs.Contains(o.GetType())).ToArray();
+            var maybeAwesome = inputs.Where(o => mandatoryOutputs.Contains(o.GetType())).ToArray();
             if (maybeAwesome.Length != 0)
                 return maybeAwesome;
 

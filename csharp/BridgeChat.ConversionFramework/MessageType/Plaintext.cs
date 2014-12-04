@@ -2,7 +2,7 @@
 
 namespace BridgeChat.ConversionFramework.MessageType
 {
-    public class Plaintext
+    public sealed class Plaintext
     {
         public string Content { get; set; }
     }

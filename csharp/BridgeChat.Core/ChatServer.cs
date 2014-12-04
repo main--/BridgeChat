@@ -78,7 +78,9 @@ namespace BridgeChat.Core
         {
             using (var netstream = client.GetStream()) {
                 var intro = await Util.AsyncProtobufRead<ModuleIntro>(netstream);
-                var self = new Module(intro.LongName, intro.ShortName);
+                var self = new Module(intro.LongName, intro.ShortName,
+                    intro.MandatoryFormats.Select(MessageFormatUtil.ToType).ToArray(),
+                    intro.OptionalFormats.Select(MessageFormatUtil.ToType).ToArray());
                 Modules.Add(self);
                 Trace.WriteLine(intro.LongName, "Module online");
 

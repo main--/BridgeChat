@@ -1,28 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Net;
+using System.Linq;
+
+using BridgeChat.ConversionFramework;
 
 namespace BridgeChat.Core
 {
     public class Module
     {
-        public static readonly Module ServerManagementModule = new Module("The BridgeChat server", "Server");
+        public static readonly Module ServerManagementModule = new Module("The BridgeChat server", "Server", null, null);
 
         public string LongName { get; private set; }
         public string ShortName { get; private set; }
         public ConcurrentQueue<byte[]> SendQ { get; private set; }
         public SemaphoreSlim SendQSem { get; private set; }
+        public Type[] MandatoryMessageTypes { get; private set; }
+        public Type[] OptionalMessageTypes { get; private set; }
 
-        public Module(string longname, string shortname)
+        public Module(string longname, string shortname, Type[] mandatoryMessageTypes, Type[] optionalMessageTypes)
         {
             LongName = longname;
             ShortName = shortname;
             SendQ = new ConcurrentQueue<byte[]>();
             SendQSem = new SemaphoreSlim(0);
+            MandatoryMessageTypes = mandatoryMessageTypes;
+            OptionalMessageTypes = optionalMessageTypes;
         }
 
         public void QueueMessage<T>(T msg)
@@ -57,6 +64,11 @@ namespace BridgeChat.Core
 
         public void SendChatMessage(uint group, Module module, string username, Protocol.ChatMessage message)
         {
+            // Run the conversion. TODO: Run a single conversion for all modules
+            message = MessageFormatUtil.PostprocessAfterConversionFramework(
+                ConversionManager.Instance.RunConversion(message.PrepareForConversionFramework().ToArray(),
+                    MandatoryMessageTypes, OptionalMessageTypes));
+
             QueueMessage(new Protocol.GroupMessage {
                 GroupId = group,
                 UserEvent = new BridgeChat.Protocol.UserEvent {
